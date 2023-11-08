@@ -20,7 +20,7 @@ class QuotesScheduler(
     val channel = -1002014814630
 
 
-//    @Scheduled(cron = "0/20 * * * * *")
+    //    @Scheduled(cron = "0/20 * * * * *")
     @Scheduled(cron = "\${quotes.cron}")
 //    @Scheduled(cron = "-")
     fun process() {

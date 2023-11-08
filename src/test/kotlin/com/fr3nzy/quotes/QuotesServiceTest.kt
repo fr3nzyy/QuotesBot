@@ -1,7 +1,7 @@
 package com.fr3nzy.quotes
 
-import com.fr3nzy.quotes.domain.quotes.repository.QuotesRepository
 import com.fr3nzy.quotes.domain.quotes.QuotesService
+import com.fr3nzy.quotes.domain.quotes.repository.QuotesRepository
 import com.fr3nzy.quotes.domain.quotes.repository.model.QuoteEntity
 import com.fr3nzy.quotes.domain.quotes.repository.model.QuoteStatus
 import io.mockk.every
