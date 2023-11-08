@@ -1,0 +1,5 @@
+spring:
+  datasource:
+    url: "postgresql://localhost:5432/quotes"
+    username: postgresql
+    password: postgresql
