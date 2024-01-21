@@ -15,12 +15,12 @@ import org.telegram.abilitybots.api.objects.Privacy.PUBLIC
 class DailyQuotesBot(
     env: Environment,
     private val quotesService: QuotesService,
-    private val responseHandler: ResponseHandler,
 //) : AbilityBot(env.getProperty("botToken"), "DailyQuotesBBot") {
-) : AbilityBot("6375366598:AAFtHFVJzgg1FvRYp8FHFvekmmQO-StAdlY", "DailyQuotesBBot") {
+) : AbilityBot("", "") {
 
     private val logger = LoggerFactory.getLogger(javaClass)
-//    val publicGroup = -1002031671992
+
+    //    val publicGroup = -1002031671992
 //    val channel = "@thedailyyquotes"
     val channel = -1002014814630
     val adminGroup = -4025089603
@@ -42,9 +42,13 @@ class DailyQuotesBot(
             .locality(GROUP)
             .privacy(GROUP_ADMIN)
             .action { ctx ->
-                quotesService.readQuote(quotesService.nextQuote)
-                silent.send("Quote with id ${quotesService.getQuote(quotesService.nextQuote)!!.id} skipped", ctx.chatId())
-                quotesService.nextQuote = null
+                silent.send(
+                    "Quote with id ${quotesService.getQuote(quotesService.nextQuote)!!.id} skipped",
+                    ctx.chatId()
+                )
+                quotesService.skipQuote().let {
+                    silent.send("Next quote with id ${quotesService.nextQuote} is \n ${it.text}", ctx.chatId())
+                }
             }
             .build()
     }
@@ -58,7 +62,7 @@ class DailyQuotesBot(
             .action { ctx ->
                 quotesService.nextQuote?.let {
                     quotesService.getQuote(quotesService.nextQuote)!!.let {
-                        silent.send("Next quote with id ${quotesService.nextQuote} is ${it.text}", ctx.chatId())
+                        silent.send("Next quote with id ${quotesService.nextQuote} is \n ${it.text}", ctx.chatId())
                     }
                 }
                     ?: silent.send("Next quote is null", ctx.chatId())
