@@ -1,1 +1,1 @@
-rootProject.name = "WebParser"
+rootProject.name = "Quotes"

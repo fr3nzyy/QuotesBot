@@ -1,4 +1,4 @@
-package com.fr3nzy.webparser
+package com.fr3nzy.quotes.domain.quotes
 
 data class Quote(
     val originalText: String,
