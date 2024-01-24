@@ -1,9 +1,11 @@
 spring:
   datasource:
-    #    url: "jdbc:postgresql://postgres:5432/quotes"
+    #    url: "jdbc:postgresql://localhost:5432/quotes"
     url: ${DB_URL}
-    username: postgres
-    password: postgres
+    #    username: postgres
+    username: ${DB_USERNAME}
+    #    password: postgres
+    password: ${DB_PASSWORD}
   jpa:
     show-sql: false
     properties:

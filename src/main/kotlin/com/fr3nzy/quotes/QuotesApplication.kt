@@ -18,7 +18,6 @@ fun main(args: Array<String>) {
     val applicationContext = runApplication<WebParserApplication>(*args)
     try {
         val botsApi = TelegramBotsApi(DefaultBotSession::class.java)
-//        botsApi.registerBot(applicationContext.getBean("com.fr3nzy.quotes.domain.telegram.DailyQuotesBot", TelegramLongPollingBot::class.java))
         val dailyQuotesBot = applicationContext.getBean(DailyQuotesBot::class.java)
         botsApi.registerBot(dailyQuotesBot as LongPollingBot)
 

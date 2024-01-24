@@ -15,8 +15,7 @@ import org.telegram.abilitybots.api.objects.Privacy.PUBLIC
 class DailyQuotesBot(
     env: Environment,
     private val quotesService: QuotesService,
-//) : AbilityBot(env.getProperty("botToken"), "DailyQuotesBBot") {
-) : AbilityBot("", "") {
+) : AbilityBot(env.getProperty("botToken"), "DailyQuotesBBot") {
 
     private val logger = LoggerFactory.getLogger(javaClass)
 
