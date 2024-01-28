@@ -1,5 +1,6 @@
 package com.fr3nzy.quotes
 
+import com.fr3nzy.quotes.domain.quotes.QuotesService
 import com.fr3nzy.quotes.domain.telegram.DailyQuotesBot
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -19,8 +20,13 @@ fun main(args: Array<String>) {
     try {
         val botsApi = TelegramBotsApi(DefaultBotSession::class.java)
         val dailyQuotesBot = applicationContext.getBean(DailyQuotesBot::class.java)
+        val quotesService = applicationContext.getBean(QuotesService::class.java)
         botsApi.registerBot(dailyQuotesBot as LongPollingBot)
-
+        val next = quotesService.skipQuote()
+        dailyQuotesBot.sendMessage(
+            "Next quote with id ${quotesService.nextQuote} is \n ${next.text}",
+            dailyQuotesBot.adminGroup
+        )
     } catch (e: TelegramApiException) {
         throw RuntimeException(e)
     }

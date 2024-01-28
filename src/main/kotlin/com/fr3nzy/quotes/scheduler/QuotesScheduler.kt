@@ -31,7 +31,8 @@ class QuotesScheduler(
         val nextQuoteDto = getRandomQuote(null)
         quotesService.nextQuote = nextQuoteDto.id
         logger.info("next quote id is ${quotesService.nextQuote}")
-        dailyQuotesBot.sendMessage(prepareAdminQuote(nextQuoteDto), adminGroup)
+        val next = prepareAdminQuote(nextQuoteDto)
+        dailyQuotesBot.sendMessage("Next quote is: \n $next", adminGroup)
     }
 
     fun prepareQuote(): QuoteDto {
